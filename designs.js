@@ -14,7 +14,7 @@ function makeGrid() {
     let row = table.insertRow(r);
     for (let c = 0; c < width; c++) {
       let cell = row.insertCell(c);
-      let colorPicker = document.getElementById('colorPicker').color;
+      let colorPicker = document.getElementById('colorPicker').value;
       cell.addEventListener('click', function () {
         cell.style.backgroundColor = colorPicker;
       });
