@@ -1,23 +1,39 @@
+// Select height input
+let height = document.getElementById('inputHeight');
 
-// Select table
-let table = document.getElementsByTagName('table');
+// Select width input
+let width = document.getElementById('inputWidth');
+
+// Select color picker to use value
+let colorPicker = document.getElementById('colorPicker');
+
+// Select html table element
+let grid = document.getElementById('pixelCanvas');
 
 // Create grid when Submit button is clicked
-let submit = document.getElementById('sizePicker');
-submit.addEventListener('submit', makeGrid);
+let button = document.getElementById('sizePicker');
+button.addEventListener('submit', function (event) {
+  event.preventDefault();
+  makeGrid(height, width);
+});
 
+// Clear canvas when page loads
+grid.innerHTML = null;
 
-function makeGrid() {
-  let height = document.getElementById('inputHeight').value;
-  let width = document.getElementById('inputWidth').value;
-  for (let r = 0; r < height; r++) {
-    let row = table.insertRow(r);
-    for (let c = 0; c < width; c++) {
+// Build grid
+function makeGrid(height, width) {
+  // Clear canvas each time the makeGrid function is called
+  grid.innerHTML = null;
+  // Adding rows based on the height value
+  for (let r = 0; r < height.value; r++) {
+    let row = grid.insertRow(r);
+    // Adding columns based on the width value
+    for (let c = 0; c < width.value; c++) {
       let cell = row.insertCell(c);
-      let colorPicker = document.getElementById('colorPicker');
+      // If individual cells are clicked, the color value will fill the cell
       cell.addEventListener('click', function () {
         cell.style.backgroundColor = colorPicker.value;
       });
-    };
-  };
+    }
+  }
 }
